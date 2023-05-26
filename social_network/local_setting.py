@@ -1,7 +1,7 @@
 DEBUG = True
 ALLOWED_HOSTS = []
 
-DB_NAME = ''
-DB_HOST = ''
-DB_PASS = ''
-DB_USER = ''
+DB_NAME = 'social_network'
+DB_HOST = '127.0.0.1'
+DB_USER = 'root'
+DB_PASS = 'A.la2002tif'
