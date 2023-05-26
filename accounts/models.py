@@ -24,9 +24,9 @@ class Device(models.Model):
     DEVICE_ANDROID = 3
     DEVICE_PC = 4
     DEVICE_TYPE_CHOICES = (
-        (DEVICE_WEB,'web')
-        (DEVICE_ANDROID, 'android')
-        (DEVICE_IOS, 'ios')
+        (DEVICE_WEB,'web'),
+        (DEVICE_ANDROID, 'android'),
+        (DEVICE_IOS, 'ios'),
         (DEVICE_PC, 'pc')
     )
 
