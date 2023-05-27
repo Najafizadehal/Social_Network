@@ -26,7 +26,7 @@ class RegisterSerializer(serializers.models):
                 raise serializers.ValidationError({
                     'password' : 'password did not match.'
                 })
-            return attr
+            return super(RegisterSerializer, self).Validator(attr)
 
         def create(self, validate_data):
             user = User.object.create(
