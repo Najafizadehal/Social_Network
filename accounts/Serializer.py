@@ -10,8 +10,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
-    password_1 = serializers.CharField(required=True)
-    password_2 = serializers.CharField(required=True)
+    password_1 = serializers.CharField(required=True, write_only=True)
+    password_2 = serializers.CharField(required=True, write_only=True)
+
     class Meta:
         model = User
         fields = (
@@ -24,23 +25,19 @@ class RegisterSerializer(serializers.ModelSerializer):
             'last_name': {'required': False}
         }
 
-        def Validator(self, attrs):
+        def Validate(self, attrs):
             if attrs['password_1'] != attrs['password_2']:
                 raise serializers.ValidationError({
                     'password': 'password did not match.'
                 })
             return super(RegisterSerializer, self).Validator(attrs)
 
-        def create(self, validate_data):
+        def create(self, validated_data):
             user = User.object.create_user(
-                username=validate_data['username'],
-                email=validate_data['email'],
-                first_name=validate_data.get('first_name', ''),
-                last_name=validate_data.get('last_name', ''),
-                password=validate_data['password_1']
+                username=validated_data['username'],
+                email=validated_data['email'],
+                first_name=validated_data.get('first_name', ''),
+                last_name=validated_data.get('last_name', ''),
+                password=validated_data['password_1']
             )
-
-            # user.set_password(validate_data['password_1'])
-            # user.save()
-
             return user
